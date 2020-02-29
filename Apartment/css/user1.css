@@ -1,0 +1,251 @@
+/* Name fonts design */
+
+.name
+ {
+   font-family:'Noto Serif', serif;
+   padding-top: 10px;
+   font-weight: bold;
+   font-size:20px;
+   color:#F0F0F0;
+ }
+ /*  Navigation bar */
+.sidenav {
+width:20vw;
+position: fixed;
+text-align: center;
+z-index: 1;
+left:0;
+background: #222222;
+overflow-x: hidden;
+padding-top: 20px;
+padding-top: 10vh;
+height: 100%;
+}
+
+.sidenav a {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 18px;
+color:#F0F0F0;
+display: block;
+}
+
+.sidenav a:hover {
+color:#2c98f0;
+text-decoration: underline;
+}
+
+.main {
+margin-left: 300px; /* Same as the width of the sidenav */
+padding: 0px 10px;
+}
+.i-circle
+{
+border-radius: 50%;
+}
+@media screen and (max-height: 450px) {
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}
+
+/*education collapsibles */
+.collapsible {
+background-color: #777;
+color: white;
+cursor: pointer;
+padding: 18px;
+width: 100%;
+border: none;
+text-align: left;
+outline: none;
+font-size: 15px;
+}
+
+.active, .collapsible:hover {
+background-color: #555;
+}
+
+.collapsible:after {
+content: '\002B';
+color: white;
+font-weight: bold;
+float: right;
+margin-left: 5px;
+}
+
+
+
+.content {
+padding: 0 18px;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.2s ease-out;
+background-color: #f1f1f1;
+}
+.floating_btn{
+  text-align: center;
+  position: fixed;
+  bottom:3vw;
+  right: 5vw;
+}
+
+.main1{
+  text-align: center;
+  padding:5vh 1vw;
+  float: right;
+  width: 80vw;
+  height: 100vh;
+}
+#About{
+  background-color: #5f00b8;
+  color: white;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding: 30vh 0vw;
+}
+
+.mailid{
+  font-size: 2vw;
+}
+
+.skill{
+  font-size: 1vw;
+  background: rgba(240, 239, 237,0.8);
+  padding:2vh 0.5vw;
+  margin: 2vh;
+  text-align: left;
+  border-radius: 1vw;
+  font-size: 2.3vh;
+}
+.skill_bar{
+  background: #ffd103;
+  text-align: center;
+  border-radius: 1vw;
+}
+.skill_bar_background{
+  background-color: rgba(247, 220, 96,0.5);
+  border-radius: 1vw;
+}
+
+#Skills{
+  background-color: rgb(0, 118, 222);
+  color:Black;
+}
+#Education
+{
+ background-color:#ffc50d;
+}
+#manage
+{
+ background-color:#376E6F;
+}
+#Projects
+{
+  background-color: #704595;
+}
+.topic_main{
+  font-size: 2vw;
+}
+
+.chart{
+  background-color: rgba(240, 240, 240,0.9);
+  padding:2vw;
+  border-radius: 1vw;
+  margin-left: 1vw;
+}
+
+#Contact{
+  background-color: #f64c72;
+}
+
+.Visiting_card{
+  width:44vw;
+  display: block;
+  margin: 20vh auto;
+  padding: 2vw;
+  border-radius: 1vw;
+  background-color:rgba(240, 240, 240,0.8);
+}
+
+.self_image{
+  display: inline-block;
+}
+.self_image img{
+  vertical-align:bottom;
+  display: inline-block;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+}
+.details{
+  width:29vw;
+  display: inline-block;
+  text-align: left;
+  padding:1vw;
+}
+.details .topic_main{
+  text-align: left;
+  font-size: 2vw;
+}
+.details .sub_title{
+  font-size: 1.2vw;
+}
+.general_details {
+  line-height: 3vh;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color:#ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+#Maintenance
+{
+  background-color: #5CDB95;
+}
+#Notice
+{
+  background-color: #C5CBE3;
+}
+#Letter
+{
+ background-color: #1F6521; 
+}
+#employee
+{
+  background-color: #97CAEF;
+  height: 130vh;
+}
+#view_owner
+{
+  background-color: #F13C20;
+}

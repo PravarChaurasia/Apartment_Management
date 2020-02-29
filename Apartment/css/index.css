@@ -1,0 +1,192 @@
+/* Name fonts design */
+
+.name
+ {
+   font-family:'Noto Serif', serif;
+   padding-top: 10px;
+   color: #2b2b2b;
+   font-weight: bold;
+   font-size:20px;
+ }
+ /*  Navigation bar */
+.sidenav {
+width:20vw;
+position: fixed;
+text-align: center;
+z-index: 1;
+margin-top: 2vh;
+background: #eee;
+overflow-x: hidden;
+padding-top: 20px;
+}
+
+.sidenav a {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 18px;
+color:black;
+display: block;
+}
+
+.sidenav a:hover {
+color:#2c98f0;
+text-decoration: underline;
+}
+
+.main {
+margin-left: 300px; /* Same as the width of the sidenav */
+padding: 0px 10px;
+}
+.i-circle
+{
+border-radius: 50%;
+}
+@media screen and (max-height: 450px) {
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}
+
+/*education collapsibles */
+.collapsible {
+background-color: #777;
+color: white;
+cursor: pointer;
+padding: 18px;
+width: 100%;
+border: none;
+text-align: left;
+outline: none;
+font-size: 15px;
+}
+
+.active, .collapsible:hover {
+background-color: #555;
+}
+
+.collapsible:after {
+content: '\002B';
+color: white;
+font-weight: bold;
+float: right;
+margin-left: 5px;
+}
+
+.active:after {
+content: "\2212";
+}
+
+.content {
+padding: 0 18px;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.2s ease-out;
+background-color: #f1f1f1;
+}
+.floating_btn{
+  text-align: center;
+  position: fixed;
+  bottom:3vw;
+  right: 5vw;
+}
+
+.main1{
+  text-align: center;
+  padding:5vh 1vw;
+  float: right;
+  width: 80vw;
+  height: 100vh;
+}
+#About{
+  background-color: #5f00b8;
+  color: white;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding: 30vh 0vw;
+}
+
+.mailid{
+  font-size: 2vw;
+}
+
+.skill{
+  font-size: 1vw;
+  background: rgba(240, 239, 237,0.8);
+  padding:2vh 0.5vw;
+  margin: 2vh;
+  text-align: left;
+  border-radius: 1vw;
+  font-size: 2.3vh;
+}
+.skill_bar{
+  background: #ffd103;
+  text-align: center;
+  border-radius: 1vw;
+}
+.skill_bar_background{
+  background-color: rgba(247, 220, 96,0.5);
+  border-radius: 1vw;
+}
+
+#Skills{
+  text-align: left;
+  background-color: rgb(0, 118, 222);
+  color:Black;
+}
+#Education
+{
+ background-color:#ffc50d;
+ text-align: left;
+}
+#Projects
+{
+  background-color: #704595;
+}
+.topic_main{
+  font-size: 2vw;
+}
+
+.chart{
+  background-color: rgba(240, 240, 240,0.9);
+  padding:2vw;
+  border-radius: 1vw;
+  margin-left: 1vw;
+}
+
+#Contact{
+  background-color: #f64c72;
+}
+
+.Visiting_card{
+  width:44vw;
+  display: block;
+  margin: 20vh auto;
+  padding: 2vw;
+  border-radius: 1vw;
+  background-color:rgba(240, 240, 240,0.8);
+}
+
+.self_image{
+  display: inline-block;
+}
+.self_image img{
+  vertical-align:bottom;
+  display: inline-block;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+}
+.details{
+  width:29vw;
+  display: inline-block;
+  text-align: left;
+  padding:1vw;
+}
+.details .topic_main{
+  text-align: left;
+  font-size: 2vw;
+}
+.details .sub_title{
+  font-size: 1.2vw;
+}
+.general_details {
+  line-height: 3vh;
+}

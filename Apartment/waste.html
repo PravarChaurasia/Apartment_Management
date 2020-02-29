@@ -1,0 +1,420 @@
+ <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Create Profile</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <form method="post">
+            <div class="form-group">
+              <label for="empid">Emp ID:</label>
+              <input type="text" class="form-control" id="empid" placeholder="Enter EmpID" name="empid" required>
+              <!--div class="valid-feedback">Valid.</div-->
+              <!--div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div>
+            <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter Name " name="name" required>
+              <!--div class="valid-feedback">Valid.</div-->
+              <!--div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+
+            <div class="form-group">
+              <label for="mno">Mobile No:</label>
+              <input type="text" class="form-control" id="mno" placeholder="Enter Mobile No" name="mno" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="Department">Department:</label>
+              <input type="text" class="form-control" id="Department" placeholder="Enter Department" name="Department" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            
+            <div class="form-group">
+              <label for="Salary">Salary:</label>
+              <input type="text" class="form-control" id="Salary" placeholder="Enter Salary" name="Salary" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <button type="submit" class="btn btn-primary" name="createemp">Submit</button>
+          </form>
+        </div>
+      </div>
+  </div>
+
+
+ <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">View Profile</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+      <div style="overflow-y:auto;">
+          <table class="table table-hover" style="text-align: left; overflow-y:scroll">
+            <thead>
+              <tr>
+                <th>Employee Id </th>
+                <th>Name </th>
+                <th>View Profile </th>
+                <th>Update Profile </th>
+                <th>Delete Profile </th>
+              </tr>
+            </thead>
+          <?php 
+            $sqlc="SELECT * FROM employee";
+        if($resultc=mysqli_query($conn,$sqlc))
+        {
+          $rowcount_comp=mysqli_num_rows($resultc);
+          if($rowcount_comp>0)
+          {
+          ?>
+            <tbody>
+              <?php while($row_comp = mysqli_fetch_assoc($resultc)) { ?>
+              <tr>
+                <td><?php  echo $row_comp['EmpID'];  ?></td>
+                <td><?php  echo $row_comp['Name']; ?></td>
+                <td> <a href = "view_profile.php?empid=<?php echo $row_comp['EmpID'];?>" > View Profile </a> </td>
+                <td> <a href = "edit_profile.php?empid=<?php echo $row_comp['EmpID'];?>" > Update Profile </a> </td>
+                <td> <a href = "delete_profile.php?empid=<?php echo $row_comp['EmpID'];?>" > Delete Profile </a> </td>
+              </tr>
+            </tbody>
+          <?php } ?>
+          </table>
+          <?php
+          }
+            else
+              {
+              ?><p>NO Employee registered</p><?php
+              } 
+          }
+          ?> 
+      </div>
+    </div>
+  </div>
+
+
+  khilawan part
+
+  <?php
+            $msg = "";
+            if(isset($_POST['createemp'])){
+                $empid=$_POST["empid"];
+                $email=$_POST["email"];
+                $mno=$_POST["mno"];
+                $Department=$_POST["Department"];
+                $Designation=$_POST["Designation"];
+                $Salary=$_POST["Salary"];
+                if($empid!="" && $email!="" && $mno!=""&& $Department!="" && $Designation!=""&& $Salary!=""){
+                  $sql = "INSERT INTO employee (EmpID, Department,  MobileNumber,  Email, Designation, Salary) VALUES ('$empid','$Department','$mno','$email','$Designation', '$Salary')";
+                  if ($conn->query($sql) === TRUE) {
+                    $msg = "New employee registered successfully";
+                  } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                  }
+                }
+            }
+          ?>
+          <?php
+            
+            if(isset($_POST['updateemp'])){
+                $empid=$_POST["empid"];
+                $email=$_POST["email"];
+                $mno=$_POST["mno"];
+                $Department=$_POST["Department"];
+                $Designation=$_POST["Designation"];
+                $Salary=$_POST["Salary"];
+                $sqlu = "SELECT * FROM employee WHERE EmpID='$empid'";
+                $result=mysqli_query($conn,$sql);
+                $rowcount=mysqli_num_rows($result);
+                if($rowcount == 1 ){
+                  $sql = "UPDATE employee SET Department='$Department', MobileNumber='$mno', Email='$email', Designation='$Designation', Salary='$Salary' WHERE EmpID='$empid'";
+                  if ($conn->query($sql) === TRUE) {
+                    $msg = "Profile Updated successfully";
+                  } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                  }
+                }
+            }
+          ?>
+          <?php
+            
+            if(isset($_POST['Deleteemp'])){
+                $empid=$_POST["EmpID"];
+                $sqlu = "SELECT * FROM employee WHERE EmpID='$empid'";
+                $result=mysqli_query($conn,$sql);
+                $rowcount=mysqli_num_rows($result);
+                if($rowcount == 1 ){
+                  $sql = "DELETE FROM employee WHERE EmpID='$empid'";
+                  if ($conn->query($sql) === TRUE) {
+                    $msg = "Profile deleted successfully";
+                  } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                  }
+                }
+            }
+          ?>
+<div class="main1" style="display: block;"  id="employee">
+  <div class="chart">
+  <div style="margin: 10px;">
+  <h2>Manage Employee Profile</h2>
+  <?php echo $msg;?>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Create Profile</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <form method="post">
+            <div class="form-group">
+              <label for="empid">Emp ID:</label>
+              <input type="text" class="form-control" id="empid" placeholder="Enter EmpID" name="empid" required>
+              <!--div class="valid-feedback">Valid.</div-->
+              <!--div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="mno">Mobile No:</label>
+              <input type="text" class="form-control" id="mno" placeholder="Enter Mobile No" name="mno" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="Department">Department:</label>
+              <input type="text" class="form-control" id="Department" placeholder="Enter Department" name="Department" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="Designation">Designation:</label>
+              <input type="text" class="form-control" id="Designation" placeholder="Enter Designation" name="Designation" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="Salary">Salary:</label>
+              <input type="text" class="form-control" id="Salary" placeholder="Enter Salary" name="Salary" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <button type="submit" class="btn btn-primary" name="createemp">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Update Profile</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+          <form method="post">
+            <div class="form-group">
+              <label for="empid">Emp ID:</label>
+              <input type="text" class="form-control" id="empid" placeholder="Enter EmpID" name="empid" required>
+              <!--div class="valid-feedback">Valid.</div-->
+              <!--div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="mno">Mobile No:</label>
+              <input type="text" class="form-control" id="mno" placeholder="Enter Mobile No" name="mno" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="Department">Department:</label>
+              <input type="text" class="form-control" id="Department" placeholder="Enter Department" name="Department" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="Designation">Designation:</label>
+              <input type="text" class="form-control" id="Designation" placeholder="Enter Designation" name="Designation" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="Salary">Salary:</label>
+              <input type="text" class="form-control" id="Salary" placeholder="Enter Salary" name="Salary" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <button type="submit" class="btn btn-primary" name="updateemp">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">View Profile</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Delete Profile</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+          <form method="post">
+          <div class="form-group">
+              <label for="EmpID">EmpID:</label>
+              <input type="text" class="form-control" id="EmpID" placeholder="Enter EmpID" name="EmpID" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <button type="submit" class="btn btn-primary" name="Deleteemp">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+</div>
+</div>
+
+
+
+<!-- this is done -->
+<div class="main1" style="display: block;"  id="manage_employee">
+    <div style="margin: 10px;">
+  <h2>Manage Profile</h2>
+  <?php echo $msg;?>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Create Profile</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <form method="post">
+            <div class="form-group">
+              <label for="empid">Emp ID:</label>
+              <input type="text" class="form-control" id="empid" placeholder="Enter EmpID" name="empid" required>
+              <!--div class="valid-feedback">Valid.</div-->
+              <!--div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter Name " name="name" required>
+              <!--div class="valid-feedback">Valid.</div-->
+              <!--div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+
+            <div class="form-group">
+              <label for="mno">Mobile No:</label>
+              <input type="text" class="form-control" id="mno" placeholder="Enter Mobile No" name="mno" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <div class="form-group">
+              <label for="Department">Department:</label>
+              <input type="text" class="form-control" id="Department" placeholder="Enter Department" name="Department" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            
+            <div class="form-group">
+              <label for="Salary">Salary:</label>
+              <input type="text" class="form-control" id="Salary" placeholder="Enter Salary" name="Salary" required>
+              <!--div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div-->
+            </div>
+            <button type="submit" class="btn btn-primary" name="createemp">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">View Profile</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+      <div style="overflow-y:auto;">
+          <table class="table table-hover" style="text-align: left; overflow-y:scroll">
+            <thead>
+              <tr>
+                <th>Employee Id </th>
+                <th>Name </th>
+                <th>View Profile </th>
+                <th>Update Profile </th>
+                <th>Delete Profile </th>
+              </tr>
+            </thead>
+          <?php 
+            $sqlc="SELECT * FROM employee";
+        if($resultc=mysqli_query($conn,$sqlc))
+        {
+          $rowcount_comp=mysqli_num_rows($resultc);
+          if($rowcount_comp>0)
+          {
+          ?>
+            <tbody>
+              <?php while($row_comp = mysqli_fetch_assoc($resultc)) { ?>
+              <tr>
+                <td><?php  echo $row_comp['EmpID'];  ?></td>
+                <td><?php  echo $row_comp['Name']; ?></td>
+                <td> <a href = "view_profile.php?empid=<?php echo $row_comp['EmpID'];?>" > View Profile </a> </td>
+                <td> <a href = "edit_profile.php?empid=<?php echo $row_comp['EmpID'];?>" > Update Profile </a> </td>
+                <td> <a href = "delete_profile.php?empid=<?php echo $row_comp['EmpID'];?>" > Delete Profile </a> </td>
+              </tr>
+            </tbody>
+          <?php } ?>
+          </table>
+          <?php
+          }
+            else
+              {
+              ?><p>NO Employee registered</p><?php
+              } 
+          }
+          ?> 
+    </div>
+      </div>
+    </div>
+    
+  </div> 
+</div>

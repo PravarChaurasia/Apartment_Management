@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mohammad rahil</title>
+  <link rel="icon" href="man.png" type="image/icon type">
+<!-- online style links for the bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- font awesome script -->
+  <script src="https://kit.fontawesome.com/49f472c2b6.js"></script>
+
+  <!-- for font family -->
+  <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+  <link href="css/index.css" rel="stylesheet" type="text/css">
+
+  <meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+
+  <!-- script for the type writing effect -->
+  <script >
+  var TxtType = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+  };
+
+  TxtType.prototype.tick = function() {
+    var i = this.loopNum % this.toRotate.length;
+    var fullTxt = this.toRotate[i];
+
+    if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+    } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+    }
+
+    this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+    var that = this;
+    var delta = 200 - Math.random() * 100;
+
+    if (this.isDeleting) { delta /= 2; }
+
+    if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+    } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 500;
+    }
+
+    setTimeout(function() {
+    that.tick();
+    }, delta);
+  };
+
+  window.onload = function() {
+    var elements = document.getElementsByClassName('typewrite');
+    for (var i=0; i<elements.length; i++) {
+        var toRotate = elements[i].getAttribute('data-type');
+        var period = elements[i].getAttribute('data-period');
+        if (toRotate) {
+          new TxtType(elements[i], JSON.parse(toRotate), period);
+        }
+    }
+    // INJECT CSS
+    var css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+    document.body.appendChild(css);
+  };
+  </script>
+</head>
+<body>
+
+ <!-- download floating button  -->
+<div class='floating_btn'>
+  <span class="fa-stack fa-2x">
+    <a href="./Resume.pdf" download="Resume.pdf">
+      <i class="fas fa-circle fa-stack-2x" style="color:#03a1fc;"></i>
+       <i class="fas fa-download fa-stack-1x fa-inverse" ></i> </a>
+  </span>
+</div>
+
+<!-- navigation bar -->
+
+<div class="sidenav">
+  <img src="rahil.JPG" class="i-circle" alt="Cinque Terre" width="130px" height="130px">
+  <p class="name">Mohammad Rahil Quazi</p>
+  <a href="#About"><i class="fas fa-user-tie"></i>&nbsp;About</a>
+  <a href="#Skills"><i class="fas fa-code"></i>&nbsp;Skills</a>
+  <a href="#Education"><i class="fas fa-graduation-cap"></i>&nbsp;Education</a>
+  <a href="#Projects"><i class="fab fa-github"></i></i>&nbsp;Projects</a>
+  <a href="#Contact"><i class="fas fa-phone-alt"></i></i>&nbsp;Contacts</a>
+  <div style="position:absolute;bottom:10%;">
+    <div style="display:inline;"><a href="#" style="display:inline;padding:0"><img src="linked.png" height="11%" width="20%" style="padding:2%;" ></a></div>
+    <div style="display:inline;"><a href="#" style="display:inline;padding:0"><img src="twitter.png" height="11%" width="20%" style="padding:2%;"></a></div>
+    <div  style="display:inline;"><a href="https://www.codechef.com/users/mohdrahil7" style="display:inline;padding:0"><img src="code.png" height="11%" width="20%" style="padding:2%;"></a></div>
+  </div>
+</div>
+
+  <!-- ABOUT -->
+
+  <div class="main1" style="display:block;" id="About">
+    <div class="about">
+      <div style="display:inline-block;width:30%">
+        <h1 style="font-family: 'Cinzel', sans-serif;">
+          Hi!<br>
+          I am Rahil
+        </h1>
+        <br>
+        <h3>
+          <a style="font-family: 'Kalam', sans-serif;" class="typewrite" data-period="2000" data-type='["->I am Creative.", "->I Love Design.", "->I Love to Develop." ]'>
+          <span class="wrap"></span>
+          </a>
+        </h3>
+        <br>
+        <p class="mailid" style="font-family: 'Acme', sans-serif;"><i class="fa fa-envelope-o" style="color:white" aria-hidden="true"></i>&nbsp;mohdrahil7@gmail.com</p>
+        <br>
+      </div>
+   </div>
+  </div>
+
+  <!-- SKILLS -->
+
+  <div class="main1" style="display:block;" id="Skills">
+    <div class='chart'>
+      <div class='topic_main'>
+        Skill Chart
+      </div>
+      <div class='skill'>
+        C
+        <div class="skill_bar_background">
+          <div class="skill_bar" style='width:60%'>
+            60%
+          </div>
+        </div>
+      </div>
+      <div class='skill'>
+        C++
+        <div class="skill_bar_background">
+          <div class="skill_bar" style='width:70%'>
+            70%
+          </div>
+        </div>
+      </div>
+      <div class='skill'>
+        HTML
+        <div class="skill_bar_background">
+          <div class="skill_bar" style='width:80%'>
+            80%
+          </div>
+        </div>
+      </div>
+      <div class='skill'>
+        PHP
+        <div class="skill_bar_background">
+          <div class="skill_bar" style='width:60%'>
+            60%
+          </div>
+        </div>
+      </div>
+      <div class="interest">
+        <div class='topic_main'>
+          Area of Interest
+        </div>
+        &nbsp;&nbsp;Cognitive Science,Deep learning,Data Analysis
+      </div>
+      <br>
+      <div class="operating">
+        <div class='topic_main'>
+          Operating System
+        </div>
+        &nbsp;&nbsp;windows,ubantu 19
+      </div>
+    </div>
+  </div>
+  <div class="main1" style="display: block;" id="Education">
+    <div class='chart' style="margin-top:4%;">
+      <h1 style="text-align: center;">Education</h1>
+      <div>
+          <p class="topic_main" style="float:left;margin-bottom:0;">Mtech(Computer Science Engineering)</p>
+          <p class="topic_main" style="float: right;margin-bottom:0;">2019-Present</p>  <!--style="float:right;" -->
+      </div>
+      <p style="clear: both">National Institute of Technology Karnataka &nbsp;<a href="https://www.nitk.ac.in"><i class="fas fa-external-link-alt"></i></a></p>
+      <div>
+          <p class="topic_main" style="float:left;margin-bottom:0;">B.E(Computer Science Engineering)</p>
+          <p class="topic_main" style="float: right;margin-bottom:0;">2014-2018</p>  <!--style="float:right;" -->
+      </div>
+      <p style="clear: both">MGM Jawaharlal Nehru Engineering College Aurangabad, Maharashtra &nbsp;<a href="https://www.jnec.org"><i class="fas fa-external-link-alt"></i></a><br>Aggregate:75.75%</p>
+      <div>
+          <p class="topic_main" style="float:left;margin-bottom:0;">All India Senior School Examination</p>
+          <p class="topic_main" style="float: right;margin-bottom:0;">2013-2014</p>  <!--style="float:right;" -->
+      </div>
+      <p style="clear: both">Kendriya Vidyalaya Shaktinagar Sonebhadra, U.P &nbsp;<a href="http://www.kvshaktinagar.org/"><i class="fas fa-external-link-alt"></i></a><br>Percentage:82.50%</p>
+      <div>
+          <p class="topic_main" style="float:left;margin-bottom:0;">All India Secondary School Examination</p>
+          <p class="topic_main" style="float: right;margin-bottom:0;">2011-2012</p>  <!--style="float:right;" -->
+      </div>
+      <p style="clear: both">Kendriya Vidyalaya Shaktinagar Sonebhadra, U.P &nbsp;<a href="http://www.kvshaktinagar.org/"><i class="fas fa-external-link-alt"></i></a><br>CGPA:9.8</p>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+
+  <div class="main1" style="display:block;" id="Projects">
+    <div class='chart' style="text-align: left;margin-top: 4%;">
+      <h1 style="text-align: center;">Projects</h1>
+      <p class="topic_main" style="margin-bottom: 0;">Onsocio</p>
+      <p>onsocio is web platfrom which uses multinomial naive bayes algorithm in order to classiffy the tweets into different categories such as entertainment, sports, education etc. this platform also use to classify tweets into positive and negative tweets and finally give the whole statics about the user tweets</p>
+      <p class="topic_main" style="margin-bottom: 0;">Take Away Fast Food Application</p>
+      <p>It is a desktop application for the billing and tracking of restaurant customers.this application is developed in java.</p>
+      <p class="topic_main" style="margin-bottom: 0;">JNEC Digital Library Portal</p>
+      <p>It is a local server web application that is accessible within the jnec college for the easy access of the springer books , NPTEL videos and E-Journals that are bought by college.this web portal developed using html,css,bootstrap,php and Mysql database.</p>
+      <p class="topic_main" style="margin-bottom: 0;">Cosmo ENT Hospital &nbsp;<a href="http://www.cosmoenthospital.com"><i class="fas fa-external-link-alt"></i></a></p>
+      <p>It is a static website for cosmo hospital located in aurangabad.</p>
+    </div>
+  </div>
+
+  <!-- CONTACTS -->
+
+  <div class="main1" style="display:block;" id="Contact">
+    <div class="Visiting_card">
+        <div class="self_image">
+          <img src="rahil.JPG">
+        </div>
+        <div class="details">
+          <div class='topic_main'>
+            Mohammad Rahil
+          </div>
+          <div class='sub_title'>
+            Living To Learn.....
+          </div>
+          <div class="general_details">
+              <i class="fas fa-envelope"></i>&nbsp; mohdrahil7@gmail.com<br>
+              <i class="fas fa-phone"></i>&nbsp; (+91)9511802278<br>
+              <i class="fas fa-map-marker-alt"></i>&nbsp; Aurangabad, Maharastra,India
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
